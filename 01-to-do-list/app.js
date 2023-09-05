@@ -35,11 +35,12 @@ const createItem = (str) => {
     div.innerText = str;
     list.appendChild(div);
 
-    // creating icon and adding class Name and appending into the item div
+    // creating icon and adding class Name and appending into the div.item
     icon = document.createElement('i');
     icon.className = 'fa fa-trash';
     div.appendChild(icon);
 
+    // check the div
     console.log(div);
 
 }
@@ -56,9 +57,11 @@ window.addEventListener('load', () => {
 
 const addItemToList = (item) => {
     items.push(item);
+
+    // check the list
     console.log(items);
 
-    // after that store the items list in local storage
+    // store the items list in local storage
     storeItemsInLocalStorage(items);
 };
 
@@ -68,19 +71,21 @@ const updateItemList = (specificItem) => {
         if(itemIndex !== -1) {
             items.splice(itemIndex, 1);
         }
+    
+    // update the items list in the local storage
     storeItemsInLocalStorage(items);
 };
 
 
 const deleteAllItemsFromList = () => {
-    // after that store the empty items list in local storage
+
+    // delete the items list from the local storage
     localStorage.removeItem('items');
 };
 
 
 
 
-// let inputString;
 
 const convertToValidID = (str) => {
     str = str.split(' ').join('-');
@@ -96,7 +101,6 @@ document.querySelector('#add-btn')
     if(input.value !== '') {
         createItem(input.value);
         addItemToList(input.value);
-        console.log('retrieved Item:',retrieveItemsFromLocalStorage());
 
         input.value = '';
     }
@@ -108,7 +112,6 @@ input.addEventListener('keydown', (e) => {
     if(e.key === 'Enter' && input.value !== '') {
         createItem(input.value);
         addItemToList(input.value);
-        console.log('retrieved Item:',retrieveItemsFromLocalStorage());
 
         input.value = '';
     }
